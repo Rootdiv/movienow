@@ -1,11 +1,13 @@
 import { createStore, Store, useStore as baseUseStore } from 'vuex';
-import { filmsModule } from '@/store/films/module';
+import { moviesModule } from '@/store/movies/module';
+import { filmModule } from '@/store/film/module';
 import type { RootState } from '@/store/types';
 import type { InjectionKey } from 'vue';
 
 export const store = createStore<RootState>({
   modules: {
-    films: filmsModule,
+    movies: moviesModule,
+    film: filmModule,
   },
 });
 

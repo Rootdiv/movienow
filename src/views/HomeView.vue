@@ -5,9 +5,9 @@
   import { computed } from 'vue';
 
   const store = useStore();
-  const status = computed(() => store.state.films.status);
-  const films = computed(() => store.state.films.items);
-  store.dispatch('films/fetchFilms');
+  const status = computed(() => store.state.movies.status);
+  const movies = computed(() => store.state.movies.items);
+  store.dispatch('movies/fetchMovies');
 </script>
 
 <template>
@@ -17,7 +17,7 @@
       <hr class="main__line" />
       <PreLoader v-if="status === 'loading'" />
       <ul v-else class="main__films">
-        <li class="main__films-item" v-for="film in films" :key="film.id">
+        <li class="main__films-item" v-for="film in movies" :key="film.id">
           <FilmItem :film="film" />
         </li>
       </ul>
@@ -42,7 +42,6 @@
       &-item {
         position: relative;
         top: 0;
-        background-color: #4d4747;
         box-shadow: 0 4px 4px 0 rgba(0, 0, 0, 0.25);
         margin-bottom: 24px;
 

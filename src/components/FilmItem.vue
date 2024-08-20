@@ -1,6 +1,7 @@
 <script setup lang="ts">
   import { ref } from 'vue';
-  import type { Film } from '@/store/films/types';
+  import { RouterLink } from 'vue-router';
+  import type { Film } from '@/store/types';
 
   const { film } = defineProps<{ film: Film }>();
   const poster = ref('');
@@ -21,7 +22,9 @@
       <img :src="poster" :alt="film.title" class="film__poster-img" />
     </div>
     <div class="film__wrapper">
-      <h3 class="film__title" v-html="film.title" />
+      <RouterLink :to="`/film/${film.id}`" class="film__link">
+        <h3 class="film__title" v-html="film.title" />
+      </RouterLink>
       <div v-show="film.collapse.duration" class="film__length">
         <p class="film__length-text">{{ film.collapse.duration?.toString() }}</p>
         <img src="@/assets/length.svg" alt="" class="film__length-image" />
@@ -42,8 +45,17 @@
 </template>
 
 <style lang="scss" scoped>
+  .router-link-active {
+    pointer-events: none;
+  }
+
   .film {
     display: flex;
+    background-color: #4d4747;
+
+    &__link {
+      display: inline-block;
+    }
 
     &__poster {
       min-width: 168px;
