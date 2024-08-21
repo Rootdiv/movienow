@@ -11,15 +11,14 @@
     poster.value = film.frames[Math.floor(Math.random() * film.frames.length)];
   } else if (film.screenshots) {
     poster.value = film.screenshots[Math.floor(Math.random() * film.screenshots.length)];
-  } else {
-    poster.value = film.poster;
   }
 </script>
 
 <template>
   <article class="film">
     <div class="film__poster">
-      <img :src="poster" :alt="film.title" class="film__poster-img" />
+      <p v-if="!poster" class="film__poster-none" v-html="film.title" />
+      <img v-else :src="poster" :alt="film.title" class="film__poster-img" />
     </div>
     <div class="film__wrapper">
       <RouterLink :to="`/film/${film.id}`" class="film__link">
@@ -65,6 +64,13 @@
       background-color: #c4c4c4;
       text-align: center;
       align-content: center;
+      color: #000000;
+      font-weight: 400;
+      font-size: 18px;
+
+      &-none {
+        padding: 0 20px;
+      }
 
       &-img {
         width: max-content;
@@ -74,6 +80,7 @@
     &__wrapper {
       position: relative;
       padding: 24px;
+      flex-grow: 1;
     }
 
     &__title {
@@ -87,7 +94,7 @@
       right: 0;
       width: 184px;
       height: 30px;
-      color: #000;
+      color: #000000;
       background-color: #c4c4c4;
       align-content: center;
       clip-path: polygon(6px 0, 100% 0, 100% 100%, 0 100%);
