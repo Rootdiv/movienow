@@ -1,5 +1,7 @@
 <script setup lang="ts">
   import { RouterLink } from 'vue-router';
+
+  defineEmits(['vnode-unmounted']);
 </script>
 
 <template>

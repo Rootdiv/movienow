@@ -11,6 +11,8 @@
   const film = computed(() => store.state.film.item);
 
   store.dispatch('film/fetchFilm', route.params.id);
+
+  defineEmits(['vnode-unmounted']);
 </script>
 
 <template>

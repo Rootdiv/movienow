@@ -53,7 +53,8 @@
     background-color: #4d4747;
 
     &__link {
-      display: inline-block;
+      display: block;
+      width: max-content;
     }
 
     &__poster {
