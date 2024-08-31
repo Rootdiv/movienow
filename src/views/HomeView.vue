@@ -63,13 +63,11 @@
 
     &__films {
       &-item {
-        position: relative;
-        top: 0;
         box-shadow: 0 4px 4px 0 rgba(0, 0, 0, 0.25);
         margin-bottom: 24px;
 
         &:hover {
-          top: -8px;
+          transform: translateY(-8px);
           box-shadow: 0 8px 20px 0 rgba(0, 0, 0, 0.35);
           transition: all 0.36s ease-in-out;
         }
