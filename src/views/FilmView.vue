@@ -2,7 +2,7 @@
   import FilmItem from '@/components/FilmItem.vue';
   import PreLoader from '@/components/PreLoader.vue';
   import { useStore } from '@/store';
-  import { computed } from 'vue';
+  import { onMounted, computed } from 'vue';
   import { useRoute, RouterLink } from 'vue-router';
 
   const route = useRoute();
@@ -10,7 +10,9 @@
   const status = computed(() => store.state.film.status);
   const film = computed(() => store.state.film.item);
 
-  store.dispatch('film/fetchFilm', route.params.id);
+  onMounted(() => {
+    store.dispatch('film/fetchFilm', route.params.id);
+  });
 
   defineEmits(['vnode-unmounted']);
 </script>

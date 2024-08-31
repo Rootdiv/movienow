@@ -3,7 +3,7 @@
   import PreLoader from '@/components/PreLoader.vue';
   import SortMovies from '@/components/SortMovies.vue';
   import { useStore } from '@/store';
-  import { computed, ref, watch } from 'vue';
+  import { onMounted, computed, ref, watch } from 'vue';
 
   const store = useStore();
   const status = computed(() => store.state.movies.status);
@@ -11,11 +11,13 @@
 
   const selectedSort = ref('');
 
-  store.dispatch('movies/fetchMovies');
-
   const selectSort = (value: string) => {
     selectedSort.value = value;
   };
+
+  onMounted(() => {
+    store.dispatch('movies/fetchMovies');
+  });
 
   watch(selectedSort, () => {
     if (selectedSort.value === 'title') {
